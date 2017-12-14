@@ -22,23 +22,23 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/">
-            <CountryList countries={countries} />
+            <CountryList {...{ countries }} />
           </Route>
-          <Route path="/:code" component={this.countryByCode} />
+          <Route path="/:code" component={this.findCountryByCode} />
         </Switch>
       </Router>
     );
   }
 
-  countryByCode = ({ match, history }) => {
+  findCountryByCode = ({ match, history }) => {
     const country = this.state.countries.find(
       c => match.params.code === c.alpha2Code
     );
-    if (!country) {
+    if (country === undefined) {
       history.push("/");
       return null;
     }
-    return <CountryDetails country={country} />;
+    return <CountryDetails {...{ country }} />;
   };
 
   componentDidMount() {
