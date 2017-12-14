@@ -8,8 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countries: [],
-      text: "Hello World!"
+      countries: []
     };
   }
 
