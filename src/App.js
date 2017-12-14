@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import CountryList from "./CountryList.js";
 import CountryDetails from "./CountryDetails.js";
-import { getCountries } from "./CoutriesApi.js";
+import { getCountries, findCountryByCode } from "./CoutriesApi.js";
 
 class App extends Component {
   constructor(props) {
@@ -24,16 +24,15 @@ class App extends Component {
           <Route exact path="/">
             <CountryList {...{ countries }} />
           </Route>
-          <Route path="/:code" component={this.findCountryByCode} />
+          <Route path="/:code" component={this.findCountryDetails} />
         </Switch>
       </Router>
     );
   }
 
-  findCountryByCode = ({ match, history }) => {
-    const country = this.state.countries.find(
-      c => match.params.code === c.alpha3Code.toLowerCase()
-    );
+  findCountryDetails = ({ match, history }) => {
+    // TODO: refactor way to get country link
+    const country = findCountryByCode(match.params.code.toUpperCase());
     if (country === undefined) {
       history.push("/");
       return null;

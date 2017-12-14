@@ -5,6 +5,7 @@ class CountryList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // TODO: maybe we want to sort asc/desc...
       sortKey: "name",
       englishOnly: false
     };
