@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import CountryList from "./CountryList.js";
 import CountryDetails from "./CountryDetails.js";
+import { getCountries } from "./CoutriesApi.js";
 
 class App extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class App extends Component {
 
   findCountryByCode = ({ match, history }) => {
     const country = this.state.countries.find(
-      c => match.params.code === c.alpha2Code
+      c => match.params.code === c.alpha3Code.toLowerCase()
     );
     if (country === undefined) {
       history.push("/");
@@ -41,9 +42,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch("https://restcountries.eu/rest/v2/all").then(resp => {
-      resp.json().then(c => this.setState({ countries: c }));
-    });
+    getCountries().then(c => this.setState({ countries: c }));
   }
 }
 

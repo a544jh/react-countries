@@ -48,7 +48,7 @@ class CountryList extends Component {
 
   CountryListItem = country => (
     <li key={country.name}>
-      <Link to={`/${country.alpha2Code}`}>{country.name}</Link>
+      <Link to={`/${country.alpha3Code.toLowerCase()}`}>{country.name}</Link>
     </li>
   );
 }
