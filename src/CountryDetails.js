@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { findCountryByCode } from "./CoutriesApi.js";
+import { findCountryByCode, getUrl } from "./CoutriesApi.js";
 
 class CountryDetails extends Component {
   render() {
@@ -17,10 +17,10 @@ class CountryDetails extends Component {
   }
 
   LinkToNeighbor = code => {
-    const { name } = findCountryByCode(code);
+    const country = findCountryByCode(code);
     return (
       <li key={code}>
-        <Link to={`/${code.toLowerCase()}`}>{name}</Link>
+        <Link to={getUrl(country)}>{country.name}</Link>
       </li>
     );
   };

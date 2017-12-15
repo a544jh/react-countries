@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { getUrl } from "./CoutriesApi.js";
 
 class CountryList extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class CountryList extends Component {
 
   CountryListItem = country => (
     <li key={country.name}>
-      <Link to={`/${country.alpha3Code.toLowerCase()}`}>{country.name}</Link>
+      <Link to={getUrl(country)}>{country.name}</Link>
     </li>
   );
 }
