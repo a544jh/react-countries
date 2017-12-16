@@ -1,4 +1,4 @@
-import Graph from "node-dijkstra";
+import Graph from "./lib/node-dijkstra/Graph";
 
 // lightweight "global state"
 window.ReactCountries = {
